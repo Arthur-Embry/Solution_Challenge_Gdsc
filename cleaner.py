@@ -1,0 +1,3 @@
+import package
+
+package.wipe()
