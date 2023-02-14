@@ -10,5 +10,7 @@ git push
 cat app.env | while read line; do
     key=$(echo $line | cut -d '=' -f 1)
     value=$(echo $line | cut -d '=' -f 2)
+    #print secret key pair
+    echo $key $value
     gh secret set $key -b $value
 done
