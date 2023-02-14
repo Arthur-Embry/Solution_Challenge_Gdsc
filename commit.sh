@@ -1,10 +1,6 @@
 #!/bin/bash
 # take a message as an argument and commit the changes to the repository
 
-git add .
-git commit -m "$1"
-git push
-
 # Read all lines from the file "app.env"
 while read -r line; do
   # Split the line into key and value
@@ -23,3 +19,7 @@ while read -r line; do
     echo "Error: gh secret set command failed"
   fi
 done < app.env
+
+git add .
+git commit -m "$1"
+git push
