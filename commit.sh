@@ -6,13 +6,6 @@ git commit -m "$1"
 git push
 
 
-# find all key value pairs in app.env and commit with gh secret set foo -b bar
-cat app.env | while read line; do
-    key=$(echo $line | cut -d '=' -f 1)
-    value=$(echo $line | cut -d '=' -f 2)
-    gh secret set $key -b $value
-done
-
 # Read all lines from the file "app.env"
 while read -r line; do
   # Split the line into key and value
