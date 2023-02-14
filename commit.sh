@@ -7,4 +7,4 @@ git push
 
 
 # Function to add a secret foo with content bar to the repository
-gh secret set MYSECRET
+gh secret set foo -b bar
