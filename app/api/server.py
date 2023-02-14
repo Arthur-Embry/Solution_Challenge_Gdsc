@@ -7,8 +7,11 @@ import types
 import re
 import markdown
 
+os.environ["OPENAI_API_KEY"]=""
+
+
 description = """
-Solution_Challenge_Gdsc API helps you do awesome stuff.
+Solution Challenge GDSC API helps you do awesome stuff.
 
 ## Benefits of an API
 An API is a great way to provide a solution challenge with a program that can be easily integrated into a wide variety of applications. The API allows the program to be used by developers and end users alike, providing an easy-to-use interface and access to the program's functionality. This allows developers to quickly and easily build applications that can interact with the program, while end users can benefit from the program's functionality without needing to understand the underlying code. Additionally, an API makes it possible to keep the program up-to-date with the latest changes and improvements, as well as integrate with other applications. With an API, the program can be quickly and easily adapted to meet the needs of a wide variety of users.
