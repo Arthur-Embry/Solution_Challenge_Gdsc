@@ -1,10 +1,14 @@
 #!/bin/bash
-# Function that takes a message as an argument and commits the changes to the repository
+# take a message as an argument and commit the changes to the repository
 
 git add .
 git commit -m "$1"
 git push
 
 
-# Function to add a secret foo with content bar to the repository
-gh secret set foo -b bar
+# find all key value pairs in app.env and commit with gh secret set foo -b bar
+cat app.env | while read line; do
+    key=$(echo $line | cut -d '=' -f 1)
+    value=$(echo $line | cut -d '=' -f 2)
+    gh secret set $key -b $value
+done
