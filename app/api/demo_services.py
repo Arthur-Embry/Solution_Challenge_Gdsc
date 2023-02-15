@@ -14,3 +14,12 @@ def foo_run(params: foo_params):
         return "hello world"
     else:
         return params.echo
+    
+class bar_params(BaseModel):
+    echo: Union[str,None]="",
+
+def bar_run(params: bar_params):
+    if(params.echo==None):
+        return "hello world"
+    else:
+        return params.echo
