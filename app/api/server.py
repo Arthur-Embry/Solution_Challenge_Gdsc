@@ -6,8 +6,13 @@ import os
 import types
 import re
 import markdown
+import dotenv
 
-os.environ["OPENAI_API_KEY"]=""
+
+#load environment variables
+for i in os.listdir(os.getcwd()):
+    if i.endswith(".env"):
+        dotenv.load_dotenv(os.path.join(os.getcwd(), i))
 
 
 description = """
@@ -86,7 +91,7 @@ def expose(endpoint,service):
     globals()[endpoint+"_static_global"] = types.FunctionType(template_static.__code__, {}, name=template_static.__name__, argdefs=template_static.__defaults__, closure=template_static.__closure__)
     globals()[endpoint+"_static_global"].__name__ = service + " - " + endpoint + " static"
     globals()[endpoint+"_static_global"].__annotations__ = {"item": function_params}
-    app.post("/static/"+endpoint)(globals()[endpoint+"_static_global"])
+    app.post("/static/"+endpoint, include_in_schema=False)(globals()[endpoint+"_static_global"])
 
 #find all files in os.getcwd() app/api
 for i in os.listdir(os.getcwd()+"/app/api"):
@@ -100,6 +105,19 @@ for i in os.listdir(os.getcwd()+"/app/api"):
             if("_run" in j):
                 expose(j.split("_run")[0],i.split("_services")[0])
 
+#[notebook-paper](../notebook-paper/index.html)
+pages_string=""
+#find all files in os.getcwd() app/api
+for i in os.listdir(os.getcwd()+"/app/public"):
+    #check if dist folder in i
+    if "dist" in os.listdir(os.getcwd()+"/app/public/"+i):
+        #add static folder to app
+        app.mount("/"+i, StaticFiles(directory=os.getcwd()+"/app/public/"+i+"/dist"), name=i)
+        pages_string+="["+i+"](../"+i+"/index.html)\n<br>"
+
+app.description=description.replace("## Pages","## Pages\n"+pages_string)
+
+
 def remap(path, new_path):
     path = "app/"+path if "/code" in os.getcwd() else path
     @app.get("/"+new_path, response_class=HTMLResponse)
@@ -108,4 +126,5 @@ def remap(path, new_path):
             lines = f.readlines()
         return ''.join(lines)
 
-
+#remap Devkits/sdk.js
+remap("public/DevKits/sdk.js","sdk.js")
