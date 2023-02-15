@@ -3,6 +3,6 @@ services:
   app:
     build: .
     ports:
-      - "5000:8080"
+      - "5001:8080"
     volumes:
       - .:/code
