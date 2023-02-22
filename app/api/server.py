@@ -8,6 +8,7 @@ import re
 import markdown
 import dotenv
 
+os.environ["OPENAI_API_KEY"]="foo"
 
 #load environment variables
 for i in os.listdir(os.getcwd()):
