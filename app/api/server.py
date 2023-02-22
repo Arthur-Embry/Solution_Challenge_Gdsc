@@ -29,8 +29,9 @@ An API is a great way to provide a solution challenge with a program that can be
 """
 
 app = FastAPI(
-    title="Solution_Challenge_Gdsc",
+    title="Life Level Plus",
     description=description,
+    version="0.0.2",
 )
 
 
