@@ -26,15 +26,15 @@ jobs:
     # Build the Docker image
     - name: Build & Publish
       run: |
-        gcloud config set project docker-solution
+        gcloud config set project gdsc-health
         # Use a different variable for the image name
-        gcloud builds submit --tag gcr.io/docker-solution/solution-challenge
+        gcloud builds submit --tag gcr.io/gdsc-health/solution-challenge
         gcloud config set run/region us-central1
       
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud run deploy actions-workflow-manager --image gcr.io/docker-solution/solution-challenge \
+        gcloud run deploy actions-workflow-manager --image gcr.io/gdsc-health/solution-challenge \
         --platform managed \
         --allow-unauthenticated \
         --memory 512M

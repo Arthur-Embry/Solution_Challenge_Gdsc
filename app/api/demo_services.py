@@ -6,8 +6,10 @@ import os
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
+
 class foo_params(BaseModel):
     echo: Union[str,None]="",
+    
 
 def foo_run(params: foo_params):
     if(params.echo==None):
