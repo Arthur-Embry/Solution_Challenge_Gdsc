@@ -47,10 +47,10 @@ def goals_run(params: goals_params):
     #TODO: implement function
     pass
 
-def audio_upload_run():
-    #TODO: implement function
+class audio_upload_params(BaseModel):
+    #TODO: implement params
     pass
 
-def audio_download_run():
+def audio_upload_run():
     #TODO: implement function
     pass
